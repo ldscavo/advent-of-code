@@ -4,10 +4,9 @@ let moduleFuel mass = (mass / 3) - 2
 
 let rec fuelFuel mass =
   let fuel = moduleFuel mass
-  match fuel <= 0 with
-    | false -> fuel + (fuelFuel fuel)
-    | true -> 0
-
+  match fuel > 0 with
+    | true -> fuel + (fuelFuel fuel)
+    | false -> 0
 
 let modules = File.ReadAllLines "input.txt" |> Seq.map int
 
