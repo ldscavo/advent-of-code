@@ -12,12 +12,10 @@ let modules = File.ReadAllLines "input.txt" |> Seq.map int
 
 // Part 1
 modules
-  |> Seq.map moduleFuel
-  |> Seq.sum
+  |> Seq.sumBy moduleFuel
   |> printfn "The total fuel requirement is: %i"
 
 // Part 2
 modules
-  |> Seq.map fuelFuel
-  |> Seq.sum
+  |> Seq.sumBy fuelFuel
   |> printfn "The total (for real this time!) fuel requirement is: %i"
