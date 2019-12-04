@@ -26,4 +26,22 @@ let validPasswords =
     |> List.filter hasTwoAdjacentDigits
     |> List.filter doDigitsNeverDecrease
 
-printfn "The total count of valid passwords is: %i" <| List.length validPasswords
+printfn "The Part 1 valid password count is: %i" <| List.length validPasswords
+
+let addOrAcc (m: Map<char, int>) (i: char) =
+  match m.ContainsKey i with
+    | true -> m.Add(i, (m.[i]+1))
+    | false -> m.Add(i, 1)
+
+let hasOnlyTwoAjacentDigits (input: string) =
+  Seq.toList input
+    |> List.fold addOrAcc Map.empty
+    |> Map.filter (fun m i -> i = 2)
+    |> Map.isEmpty
+    |> not    
+
+let validPasswordsMkII =
+  validPasswords
+    |> List.filter hasOnlyTwoAjacentDigits
+
+printfn "The Part 2 valid password count is: %A" <| List.length validPasswordsMkII
