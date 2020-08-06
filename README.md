@@ -1,5 +1,5 @@
-# Advent of Code 2019
+# Advent of Code
 
-My solutions to the 2019 Advent of Code, which I'm using as an opportunity to learn F#.
+My solutions to various Advent of Code problems, which I'm using as an opportunity to learn F# and Nim.
 
-https://adventofcode.com/2019
+https://adventofcode.com
