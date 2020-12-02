@@ -1,3 +1,4 @@
 .ionide/
 .vscode/
+.calva/
 *.exe
