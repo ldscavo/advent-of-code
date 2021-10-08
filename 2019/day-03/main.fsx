@@ -16,8 +16,8 @@ let toSteps (line: string): seq<Step> =
   line.Split ','
   |> Seq.map (fun s -> (toDirection s.[0], int s.[1..]))
 
-let expandSteps (step: Step) =
-  List.fold (fun acc s -> (fst step) :: acc) [] [1..(snd step)]
+let expandSteps ((direction, distance): Step) =
+  List.fold (fun acc s -> direction :: acc) [] [1..distance]
 
 let coordinateDelta = function
 | Up    -> ( 0, +1)
@@ -25,8 +25,8 @@ let coordinateDelta = function
 | Left  -> (-1,  0)
 | Right -> (+1,  0)
 
-let addCoordinate coord1 coord2 =
-  (fst coord1 + fst coord2, snd coord1 + snd coord2)
+let addCoordinate (x1, y1) (x2, y2) =
+  (x1 + x2, y1 + y2)
 
 let nextStep (current: Coordinate list) step =
   (addCoordinate current.[0] (coordinateDelta step)) :: current
@@ -35,10 +35,10 @@ let readCoordinatesFromFile filename =
   File.ReadLines filename
   |> Seq.map (toSteps >> Seq.collect expandSteps)
 
-let paths = Seq.toList <| readCoordinatesFromFile "input.txt"
+let manhattanDistance ((x, y): Coordinate) =
+  abs x + abs y
 
-let manhattanDistance (coords: Coordinate) =
-  abs (fst coords) + abs (snd coords)
+let paths = readCoordinatesFromFile "input.txt" |> Seq.toList
 
 let firstPathSteps =
   paths.[0] |> Seq.fold nextStep [(0, 0)] |> Set.ofList
