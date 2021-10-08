@@ -54,9 +54,8 @@ let seatsInFile =
     |> Array.toList
 
 allPossibleSeatIds
-|> List.filter (fun id ->
+|> List.find (fun id ->
     List.contains (id - 1) seatsInFile
     && List.contains (id + 1) seatsInFile
     && (List.contains id seatsInFile |> not))
-|> List.head
 |> printfn "The missing seatId is: %i"
