@@ -42,3 +42,21 @@ File.ReadAllLines "input.txt"
 |> Array.map (Seq.toList >> seatId)
 |> Array.max
 |> printfn "The highest seatId is: %A"
+
+// Part 2
+let allPossibleSeatIds =
+    [1..127] |> List.collect (fun r ->
+        [0..7] |> List.map (fun c -> (r * 8) + c))
+
+let seatsInFile =
+    File.ReadAllLines "input.txt"
+    |> Array.map (Seq.toList >> seatId)
+    |> Array.toList
+
+allPossibleSeatIds
+|> List.filter (fun id ->
+    List.contains (id - 1) seatsInFile
+    && List.contains (id + 1) seatsInFile
+    && (List.contains id seatsInFile |> not))
+|> List.head
+|> printfn "The missing seatId is: %i"
