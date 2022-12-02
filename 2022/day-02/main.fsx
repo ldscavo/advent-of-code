@@ -22,10 +22,6 @@ let matchScore  = function
 let score round = 
     (matchScore round) + (snd round |> handScore)
 
-let scoreStr round = 
-    $"{(matchScore round)} + {(snd round |> handScore)}"
-
-
 let toHand = function
     | "A" | "X" -> Rock
     | "B" | "Y" -> Paper
