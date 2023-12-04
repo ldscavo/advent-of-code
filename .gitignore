@@ -3,3 +3,5 @@
 .calva/
 *.exe
 .clj-kondo/
+.fake
+example*.txt
