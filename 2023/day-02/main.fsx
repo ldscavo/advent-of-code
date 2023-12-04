@@ -38,8 +38,6 @@ File.ReadAllLines "input.txt"
 
 // Part 2
 File.ReadAllLines "input.txt"
-|> Array.map toGame
-|> Array.map (fun (x, y) -> (x, y |> getPower))
-|> Array.map snd
+|> Array.map getPower
 |> Array.fold (+) 0
 |> printfn "Part 2: %A"
