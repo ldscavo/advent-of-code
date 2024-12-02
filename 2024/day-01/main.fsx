@@ -8,13 +8,13 @@ let (left, right) =
 
 let distance l r = l - r |> abs
 
+let score l = right |> List.filter (fun r -> r = l) |> List.length |> (*) l
+
 // Part 1
 left
 |> List.map2 distance right
 |> List.sum
 |> printfn "The total for part 1 is: %i"
-
-let score l = right |> List.filter (fun r -> r = l) |> List.length |> (*) l
 
 // Part 2
 left
