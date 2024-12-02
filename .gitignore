@@ -5,3 +5,4 @@
 .clj-kondo/
 .fake
 example*.txt
+input.txt
